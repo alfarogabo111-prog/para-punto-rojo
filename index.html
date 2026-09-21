@@ -25,7 +25,7 @@
             text-align: center;
         }
 
-        /* Pantalla de bienvenida para activar la reproducción de audio */
+        /* Pantalla de inicio */
         #start-screen {
             display: flex;
             flex-direction: column;
@@ -159,7 +159,6 @@
             transition: max-height 1.5s ease 1s, opacity 1s ease 1.2s, padding 0.5s ease 1s;
         }
 
-        /* Apertura de sobre */
         .envelope-wrapper.open .flap {
             transform: rotateX(180deg);
             z-index: 1;
@@ -276,7 +275,7 @@
 </head>
 <body>
 
-    <!-- Pantalla inicial -->
+    <!-- Pantalla de inicio -->
     <div id="start-screen">
         <h2 style="font-family: 'Dancing Script'; font-size: 38px; color: #f1c40f; margin-bottom: 25px;">Tengo una sorpresa para ti... 💛</h2>
         <button class="btn-start" onclick="iniciarSorpresa()">Toca aquí mi amor ❤️</button>
@@ -350,8 +349,8 @@
             </svg>
         </div>
 
-        <!-- Archivo de Audio M4A -->
-        <audio id="musica" src="musica.m4a" preload="auto" loop></audio>
+        <!-- Reproductor de Audio -->
+        <audio id="musica" src="musica.mp3" preload="auto" loop></audio>
 
     </div>
 
@@ -362,6 +361,8 @@
 
             let audio = document.getElementById('musica');
             
+            // Reproduce desde el inicio del archivo recortado
+            audio.currentTime = 0;
             audio.play().catch(error => {
                 console.log("Error al reproducir audio:", error);
             });
