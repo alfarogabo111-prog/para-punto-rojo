@@ -353,8 +353,8 @@
             </svg>
         </div>
 
-        <!-- Audio Carla Morrison -->
-        <audio id="musica" src="https://ia801503.us.archive.org/15/items/carla-morrison-contigo/Carla%20Morrison%20-%20Contigo.mp3" preload="auto"></audio>
+        <!-- Audio Carla Morrison Directo -->
+        <audio id="musica" src="https://files.catbox.moe/k3i5yq.mp3" crossorigin="anonymous" preload="auto"></audio>
 
     </div>
 
@@ -364,14 +364,20 @@
             document.getElementById('main-content').style.display = 'flex';
 
             let audio = document.getElementById('musica');
-            audio.currentTime = 64;
-            audio.play().catch(error => console.log("Error al reproducir audio:", error));
+            audio.currentTime = 64; // Inicia en el coro
+            
+            let playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Error al reproducir audio:", error);
+                });
+            }
 
             for(let i = 0; i < 20; i++) {
                 crearLuz();
             }
 
-            // A los 6 segundos (6000 ms) arranca la lluvia de pétalos y se abre la carta
+            // A los 6 segundos arranca la lluvia de pétalos y se abre la carta
             setTimeout(() => {
                 iniciarLluviaPetalos();
 
@@ -410,7 +416,6 @@
                 petalo.style.animationDuration = Math.random() * 3 + 3 + 's';
                 document.getElementById('main-content').appendChild(petalo);
 
-                // Eliminar el pétalo al terminar para no recargar la pantalla
                 setTimeout(() => {
                     petalo.remove();
                 }, 5000);
