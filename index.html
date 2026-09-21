@@ -353,8 +353,8 @@
             </svg>
         </div>
 
-        <!-- Audio Carla Morrison Directo -->
-        <audio id="musica" src="https://files.catbox.moe/k3i5yq.mp3" crossorigin="anonymous" preload="auto"></audio>
+        <!-- Archivo de Audio local subida a GitHub -->
+        <audio id="musica" src="musica.m4a" preload="auto"></audio>
 
     </div>
 
@@ -364,7 +364,7 @@
             document.getElementById('main-content').style.display = 'flex';
 
             let audio = document.getElementById('musica');
-            audio.currentTime = 64; // Inicia en el coro
+            audio.currentTime = 64; // Inicia en el segundo 64 (coro)
             
             let playPromise = audio.play();
             if (playPromise !== undefined) {
