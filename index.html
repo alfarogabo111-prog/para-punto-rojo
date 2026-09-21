@@ -115,7 +115,7 @@
         .envelope-wrapper {
             display: none;
             position: relative;
-            width: 310px;
+            width: 330px;
             margin: 20px auto;
             z-index: 20;
             perspective: 1000px;
@@ -166,8 +166,8 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 155px solid transparent;
-            border-right: 155px solid transparent;
+            border-left: 165px solid transparent;
+            border-right: 165px solid transparent;
             border-top: 100px solid #f1c40f;
             transform-origin: top;
             transition: transform 0.8s ease 0.5s, z-index 0.2s ease 0.8s;
@@ -179,7 +179,7 @@
             background: rgba(15, 15, 15, 0.95);
             border: 1px solid rgba(241, 196, 15, 0.6);
             border-radius: 10px;
-            padding: 20px;
+            padding: 20px 18px;
             color: #f5f5f5;
             box-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
             max-height: 0;
@@ -194,9 +194,9 @@
         }
 
         .envelope-wrapper.open .letter-card {
-            max-height: 600px;
+            max-height: 800px;
             opacity: 1;
-            padding: 20px;
+            padding: 20px 18px;
         }
 
         .letter-card h3 {
@@ -209,11 +209,41 @@
         }
 
         .letter-card p {
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 13.5px;
+            line-height: 1.6;
             color: #f5f5f5;
             text-align: justify;
             margin: 0;
+        }
+
+        /* Sticker del Perrito dentro de la carta */
+        .puppy-sticker-container {
+            margin: 15px auto 10px auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(241, 196, 15, 0.5);
+            border-radius: 12px;
+            padding: 10px 5px;
+            box-shadow: inset 0 0 10px rgba(241, 196, 15, 0.1);
+        }
+
+        .puppy-sticker-container svg {
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            animation: wigglePuppy 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes wigglePuppy {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg) scale(1.02); }
+        }
+
+        .puppy-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            color: #f1c40f;
+            font-weight: bold;
+            margin-top: 5px;
+            text-shadow: 0 0 6px rgba(241, 196, 15, 0.5);
         }
 
         /* Pétalos cayendo */
@@ -423,6 +453,77 @@
                         Te regalo estas flores amarillas para recordarte lo mucho que te quiero. Por reír contigo y pasar momentos felices, aunque confieso que cuando te transformas y te molestas por todo, me dan ganas de salir corriendo. 😅<br><br>
                         Pero sé que detrás de ese temperamento y de que lloras por absolutamente todo, hay una mujer increíble que siempre resuelve y sale adelante. Gracias por ser mi refugio, mi cable a tierra y esa amiga incondicional a la que amo con todo mi corazón, con berrinches y todo. ¡Eres única! 🌻✨
                     </p>
+
+                    <!-- STICKER DE PERRITO CON TULIPANES Y TEXTO -->
+                    <div class="puppy-sticker-container">
+                        <svg viewBox="0 0 140 130" width="120" height="110">
+                            <!-- Fondo blanco tipo Sticker con borde -->
+                            <g filter="drop-shadow(0 2px 4px rgba(0,0,0,0.3))">
+                                <!-- Orejas de Perrito -->
+                                <path d="M 35 30 C 15 25 10 50 25 65 C 32 55 35 40 35 30 Z" fill="#8d5b4c" stroke="#ffffff" stroke-width="3"/>
+                                <path d="M 105 30 C 125 25 130 50 115 65 C 108 55 105 40 105 30 Z" fill="#8d5b4c" stroke="#ffffff" stroke-width="3"/>
+                                
+                                /* Cabeza */
+                                <circle cx="70" cy="45" r="32" fill="#d7ccc8" stroke="#ffffff" stroke-width="3"/>
+                                
+                                /* Hocico */
+                                <ellipse cx="70" cy="52" rx="16" ry="12" fill="#ffffff"/>
+                                <ellipse cx="70" cy="46" rx="6" ry="4" fill="#3e2723"/>
+                                
+                                /* Ojos tiernos */
+                                <circle cx="56" cy="40" r="4.5" fill="#2c2c2c"/>
+                                <circle cx="54.5" cy="38.5" r="1.5" fill="#ffffff"/>
+                                <circle cx="84" cy="40" r="4.5" fill="#2c2c2c"/>
+                                <circle cx="82.5" cy="38.5" r="1.5" fill="#ffffff"/>
+                                
+                                /* Sonrisa */
+                                <path d="M 64 54 Q 70 59 76 54" fill="none" stroke="#3e2723" stroke-width="2" stroke-linecap="round"/>
+                                
+                                /* Mejillas rosadas */
+                                <ellipse cx="50" cy="48" rx="4" ry="2.5" fill="#ffab91" opacity="0.8"/>
+                                <ellipse cx="90" cy="48" rx="4" ry="2.5" fill="#ffab91" opacity="0.8"/>
+
+                                /* Cuerpo y Patitas */
+                                <path d="M 50 72 C 50 65 90 65 90 72 L 92 105 C 92 110 48 110 48 105 Z" fill="#d7ccc8" stroke="#ffffff" stroke-width="3"/>
+                                <ellipse cx="58" cy="105" rx="8" ry="5" fill="#ffffff" stroke="#d7ccc8" stroke-width="2"/>
+                                <ellipse cx="82" cy="105" rx="8" ry="5" fill="#ffffff" stroke="#d7ccc8" stroke-width="2"/>
+
+                                /* Ramo de Tulipanes Amarillos sostenidos */
+                                <!-- Tallos -->
+                                <path d="M 70 85 L 60 110 M 70 85 L 70 112 M 70 85 L 80 110" stroke="#2e7d32" stroke-width="3" stroke-linecap="round"/>
+                                <!-- Lazos/Cinta del Ramo -->
+                                <path d="M 62 92 Q 70 95 78 92" stroke="#e91e63" stroke-width="3" fill="none"/>
+                                <circle cx="70" cy="93" r="3" fill="#ff4081"/>
+
+                                <!-- Tulipán 1 (Izquierda) -->
+                                <g transform="translate(52, 70)">
+                                    <path d="M -8 0 C -12 -15 -2 -22 0 -10 C 2 -22 12 -15 8 0 C 4 6 -4 6 -8 0 Z" fill="#fbc02d" stroke="#ffffff" stroke-width="1.5"/>
+                                    <path d="M -4 2 C -6 -10 0 -14 0 -5 C 0 -14 6 -10 4 2 Z" fill="#ffee58"/>
+                                </g>
+
+                                <!-- Tulipán 2 (Centro) -->
+                                <g transform="translate(70, 64)">
+                                    <path d="M -9 0 C -14 -18 -2 -25 0 -12 C 2 -25 14 -18 9 0 C 5 7 -5 7 -9 0 Z" fill="#fbc02d" stroke="#ffffff" stroke-width="1.5"/>
+                                    <path d="M -5 2 C -7 -12 0 -16 0 -6 C 0 -16 7 -12 5 2 Z" fill="#fff176"/>
+                                </g>
+
+                                <!-- Tulipán 3 (Derecha) -->
+                                <g transform="translate(88, 70)">
+                                    <path d="M -8 0 C -12 -15 -2 -22 0 -10 C 2 -22 12 -15 8 0 C 4 6 -4 6 -8 0 Z" fill="#fbc02d" stroke="#ffffff" stroke-width="1.5"/>
+                                    <path d="M -4 2 C -6 -10 0 -14 0 -5 C 0 -14 6 -10 4 2 Z" fill="#ffee58"/>
+                                </g>
+
+                                /* Brazos del Perrito abrazando el ramo */
+                                <path d="M 46 76 C 42 82 58 88 65 85" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <path d="M 46 76 C 42 82 58 88 65 85" stroke="#d7ccc8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                
+                                <path d="M 94 76 C 98 82 82 88 75 85" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <path d="M 94 76 C 98 82 82 88 75 85" stroke="#d7ccc8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                        <div class="puppy-text">Te quiero hoy, mañana y siempre 💛</div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -561,33 +662,3 @@
     </script>
 </body>
 </html>
-```Para lograr ese efecto de entrada suave de audio y las transiciones de imagen a carta con marco de girasoles, puedes estructurar los cambios en **CapCut**, **Premiere Pro** o el editor que estés utilizando siguiendo estas indicaciones:
-
----
-
-### 1. Audio: Aparecer Progresivamente (Fade In)
-1. Selecciona la pista de audio en la línea de tiempo.
-2. Busca la opción **Fundido** o **Fade** (en CapCut: *Audio > Fundido* / en Premiere: *Transiciones de audio > Fundido cruzado > Ganancia constante*).
-3. Ajusta el tiempo de **Aparición progresiva (Fade In)** entre **1.0 y 1.5 segundos**. De esta forma el sonido entrará suave y no de golpe.
-
----
-
-### 2. Transición de la Foto (a los 6 segundos)
-1. Coloca la foto en la línea de tiempo y ajusta su duración exactamente a **6 segundos**.
-2. Aplica un efecto de **Desvanecer** o **Fade Out** al final de la foto (durante el último segundo, del segundo 5 al 6).
-3. Para la carta con la nota, colócala justo después (o en una capa inferior comenzando en el segundo 5) y aplícale un **Fade In (Aparecer progresivamente)** de 1 segundo para que ambas se traslapen suavemente.
-
----
-
-### 3. Carta con Marco de Girasoles y Flores Amarillas
-Para que la carta tenga las flores alrededor, la estructura visual en el editor debe ser la siguiente:
-
-* **Fondo / Marco:** Una imagen o diseño con bordes rodeados de girasoles y flores amarillas brillantes.
-* **Nota / Texto:** Un lienzo o papel tipo pergamino/hoja blanca centrado sobre el marco, con el texto de la carta redactado con una fuente tipográfica estilo manuscrita o cursiva.
-
----
-
-<ElicitationsGroup message="¿Cómo prefieres continuar con la edición?">
-  <Elicitation label="Dame los pasos exactos para CapCut o Premiere" query="Dame las instrucciones paso a paso detalladas para hacer este efecto de audio y transición en CapCut o Premiere."/>
-  <Elicitation label="Ayúdame a redactar un texto bonito para la nota" query="Ayúdame a redactar un mensaje especial y emotivo para incluir dentro de la carta."/>
-  <ElicitationsGroup>
