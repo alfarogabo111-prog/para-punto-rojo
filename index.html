@@ -63,6 +63,7 @@
             display: none;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             width: 100vw;
             height: 100vh;
             padding: 20px 15px 120px 15px;
@@ -73,24 +74,31 @@
             overflow-y: auto;
         }
 
-        /* Foto estilo Polaroid */
+        /* Foto estilo Polaroid con desaparición suave */
         .polaroid {
             background: white;
             padding: 10px 10px 18px 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.6);
             transform: rotate(-3deg);
             margin-top: 15px;
-            width: 220px;
+            width: 230px;
             border-radius: 5px;
             animation: float 4s ease-in-out infinite;
             z-index: 10;
             flex-shrink: 0;
-            transition: opacity 1s ease;
+            transition: opacity 1.5s ease, transform 1.5s ease;
+            opacity: 1;
+        }
+
+        .polaroid.fade-out {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.9) rotate(-5deg);
+            pointer-events: none;
         }
 
         .polaroid img {
             width: 100%;
-            height: 190px;
+            height: 200px;
             object-fit: cover;
             border-radius: 3px;
         }
@@ -103,11 +111,11 @@
             font-weight: bold;
         }
 
-        /* Contenedor del Sobre y la Carta */
+        /* Contenedor del Sobre, Carta y Flores Alrededor */
         .envelope-wrapper {
             display: none;
             position: relative;
-            width: 320px;
+            width: 310px;
             margin: 20px auto;
             z-index: 20;
             perspective: 1000px;
@@ -117,6 +125,27 @@
 
         .envelope-wrapper.visible {
             opacity: 1;
+        }
+
+        /* Decoración de Girasoles y Flores alrededor */
+        .flower-decor {
+            position: absolute;
+            z-index: 25;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+            animation: pulseFlower 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .fd-1 { top: -25px; left: -25px; animation-delay: 0s; }
+        .fd-2 { top: -20px; right: -20px; animation-delay: 0.5s; }
+        .fd-3 { bottom: -20px; left: -20px; animation-delay: 1s; }
+        .fd-4 { bottom: -25px; right: -25px; animation-delay: 1.5s; }
+        .fd-5 { top: 40%; left: -32px; animation-delay: 0.8s; }
+        .fd-6 { top: 45%; right: -32px; animation-delay: 1.2s; }
+
+        @keyframes pulseFlower {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(6deg); }
         }
 
         .envelope {
@@ -137,8 +166,8 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
+            border-left: 155px solid transparent;
+            border-right: 155px solid transparent;
             border-top: 100px solid #f1c40f;
             transform-origin: top;
             transition: transform 0.8s ease 0.5s, z-index 0.2s ease 0.8s;
@@ -239,17 +268,9 @@
         .t7 { animation-delay: 0.4s; width: 55px; height: 100px; }
 
         @keyframes growTulip {
-            0% {
-                transform: scaleY(0) scaleX(0.5);
-                opacity: 0;
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                transform: scaleY(1) scaleX(1);
-                opacity: 1;
-            }
+            0% { transform: scaleY(0) scaleX(0.5); opacity: 0; }
+            60% { opacity: 1; }
+            100% { transform: scaleY(1) scaleX(1); opacity: 1; }
         }
 
         @keyframes float {
@@ -290,8 +311,110 @@
             <div class="caption">Días peleando: 365 días 💛</div>
         </div>
 
-        <!-- Sobre y Carta -->
+        <!-- Sobre y Carta con Flores Alrededor -->
         <div class="envelope-wrapper" id="envelope-wrapper">
+            
+            <!-- Flores alrededor del Sobre/Carta -->
+            <div class="flower-decor fd-1">
+                <svg viewBox="0 0 100 100" width="55" height="55">
+                    <g transform="translate(50,50)">
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(0)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(30)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(60)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(90)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(120)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(150)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(180)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(210)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(240)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(270)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(300)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(330)"/>
+                        <circle cx="0" cy="0" r="18" fill="#3e2723" stroke="#5d4037" stroke-width="2"/>
+                        <circle cx="0" cy="0" r="12" fill="#271c19"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="flower-decor fd-2">
+                <svg viewBox="0 0 100 100" width="45" height="45">
+                    <g transform="translate(50,50)">
+                        <circle cx="0" cy="-20" r="14" fill="#fff176"/>
+                        <circle cx="19" cy="-7" r="14" fill="#ffee58"/>
+                        <circle cx="19" cy="14" r="14" fill="#fff176"/>
+                        <circle cx="0" cy="20" r="14" fill="#ffee58"/>
+                        <circle cx="-19" cy="14" r="14" fill="#fff176"/>
+                        <circle cx="-19" cy="-7" r="14" fill="#ffee58"/>
+                        <circle cx="0" cy="0" r="10" fill="#f57c00"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="flower-decor fd-3">
+                <svg viewBox="0 0 100 100" width="45" height="45">
+                    <g transform="translate(50,50)">
+                        <circle cx="0" cy="-20" r="14" fill="#ffee58"/>
+                        <circle cx="19" cy="-7" r="14" fill="#fff176"/>
+                        <circle cx="19" cy="14" r="14" fill="#ffee58"/>
+                        <circle cx="0" cy="20" r="14" fill="#fff176"/>
+                        <circle cx="-19" cy="14" r="14" fill="#ffee58"/>
+                        <circle cx="-19" cy="-7" r="14" fill="#fff176"/>
+                        <circle cx="0" cy="0" r="10" fill="#f57c00"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="flower-decor fd-4">
+                <svg viewBox="0 0 100 100" width="55" height="55">
+                    <g transform="translate(50,50)">
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(0)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(30)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(60)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(90)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(120)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(150)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(180)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(210)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(240)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(270)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(300)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(330)"/>
+                        <circle cx="0" cy="0" r="18" fill="#3e2723" stroke="#5d4037" stroke-width="2"/>
+                        <circle cx="0" cy="0" r="12" fill="#271c19"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="flower-decor fd-5">
+                <svg viewBox="0 0 100 100" width="42" height="42">
+                    <g transform="translate(50,50)">
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(0)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(45)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(90)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(135)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(180)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(225)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#fbc02d" transform="rotate(270)"/>
+                        <path d="M 0,-15 C -6,-30 0,-48 0,-48 C 0,-48 6,-30 0,-15 Z" fill="#ffeb3b" transform="rotate(315)"/>
+                        <circle cx="0" cy="0" r="16" fill="#3e2723"/>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="flower-decor fd-6">
+                <svg viewBox="0 0 100 100" width="40" height="40">
+                    <g transform="translate(50,50)">
+                        <circle cx="0" cy="-20" r="14" fill="#fff176"/>
+                        <circle cx="19" cy="-7" r="14" fill="#ffee58"/>
+                        <circle cx="19" cy="14" r="14" fill="#fff176"/>
+                        <circle cx="0" cy="20" r="14" fill="#ffee58"/>
+                        <circle cx="-19" cy="14" r="14" fill="#fff176"/>
+                        <circle cx="-19" cy="-7" r="14" fill="#ffee58"/>
+                        <circle cx="0" cy="0" r="10" fill="#f57c00"/>
+                    </g>
+                </svg>
+            </div>
+
             <div class="envelope">
                 <div class="flap"></div>
                 <div class="letter-card">
@@ -361,9 +484,21 @@
 
             let audio = document.getElementById('musica');
             
-            // Reproduce desde el inicio del archivo recortado
+            // Entrada Progresiva de Audio (Fade-In)
+            audio.volume = 0;
             audio.currentTime = 0;
-            audio.play().catch(error => {
+            audio.play().then(() => {
+                let volume = 0;
+                let fadeInterval = setInterval(() => {
+                    if (volume < 0.95) {
+                        volume += 0.05;
+                        audio.volume = volume;
+                    } else {
+                        audio.volume = 1.0;
+                        clearInterval(fadeInterval);
+                    }
+                }, 150); // Sube progresivamente durante 3 segundos
+            }).catch(error => {
                 console.log("Error al reproducir audio:", error);
             });
 
@@ -371,18 +506,27 @@
                 crearLuz();
             }
 
+            // A los 6 segundos la foto desaparece suavemente y sale la carta
             setTimeout(() => {
-                iniciarLluviaPetalos();
+                let polaroid = document.getElementById('polaroid-img');
+                polaroid.classList.add('fade-out');
 
-                let envelope = document.getElementById('envelope-wrapper');
-                envelope.style.display = 'block';
-                
                 setTimeout(() => {
-                    envelope.classList.add('visible');
+                    polaroid.style.display = 'none';
+
+                    let envelope = document.getElementById('envelope-wrapper');
+                    envelope.style.display = 'block';
+                    
                     setTimeout(() => {
-                        envelope.classList.add('open');
-                    }, 500);
-                }, 100);
+                        envelope.classList.add('visible');
+                        setTimeout(() => {
+                            envelope.classList.add('open');
+                        }, 500);
+                    }, 100);
+
+                }, 1200); // Espera que la foto se desvanezca por completo
+
+                iniciarLluviaPetalos();
 
             }, 6000);
         }
@@ -417,3 +561,33 @@
     </script>
 </body>
 </html>
+```Para lograr ese efecto de entrada suave de audio y las transiciones de imagen a carta con marco de girasoles, puedes estructurar los cambios en **CapCut**, **Premiere Pro** o el editor que estés utilizando siguiendo estas indicaciones:
+
+---
+
+### 1. Audio: Aparecer Progresivamente (Fade In)
+1. Selecciona la pista de audio en la línea de tiempo.
+2. Busca la opción **Fundido** o **Fade** (en CapCut: *Audio > Fundido* / en Premiere: *Transiciones de audio > Fundido cruzado > Ganancia constante*).
+3. Ajusta el tiempo de **Aparición progresiva (Fade In)** entre **1.0 y 1.5 segundos**. De esta forma el sonido entrará suave y no de golpe.
+
+---
+
+### 2. Transición de la Foto (a los 6 segundos)
+1. Coloca la foto en la línea de tiempo y ajusta su duración exactamente a **6 segundos**.
+2. Aplica un efecto de **Desvanecer** o **Fade Out** al final de la foto (durante el último segundo, del segundo 5 al 6).
+3. Para la carta con la nota, colócala justo después (o en una capa inferior comenzando en el segundo 5) y aplícale un **Fade In (Aparecer progresivamente)** de 1 segundo para que ambas se traslapen suavemente.
+
+---
+
+### 3. Carta con Marco de Girasoles y Flores Amarillas
+Para que la carta tenga las flores alrededor, la estructura visual en el editor debe ser la siguiente:
+
+* **Fondo / Marco:** Una imagen o diseño con bordes rodeados de girasoles y flores amarillas brillantes.
+* **Nota / Texto:** Un lienzo o papel tipo pergamino/hoja blanca centrado sobre el marco, con el texto de la carta redactado con una fuente tipográfica estilo manuscrita o cursiva.
+
+---
+
+<ElicitationsGroup message="¿Cómo prefieres continuar con la edición?">
+  <Elicitation label="Dame los pasos exactos para CapCut o Premiere" query="Dame las instrucciones paso a paso detalladas para hacer este efecto de audio y transición en CapCut o Premiere."/>
+  <Elicitation label="Ayúdame a redactar un texto bonito para la nota" query="Ayúdame a redactar un mensaje especial y emotivo para incluir dentro de la carta."/>
+  <ElicitationsGroup>
