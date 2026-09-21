@@ -25,7 +25,7 @@
             text-align: center;
         }
 
-        /* Pantalla de inicio */
+        /* Pantalla de inicio para permitir el reproductor */
         #start-screen {
             display: flex;
             flex-direction: column;
@@ -278,7 +278,7 @@
 </head>
 <body>
 
-    <!-- Pantalla de inicio -->
+    <!-- Pantalla de inicio para permitir reproducir audio -->
     <div id="start-screen">
         <h2 style="font-family: 'Dancing Script'; font-size: 38px; color: #f1c40f; margin-bottom: 25px;">Tengo una sorpresa para ti... 💛</h2>
         <button class="btn-start" onclick="iniciarSorpresa()">Toca aquí mi amor ❤️</button>
@@ -293,7 +293,7 @@
             <div class="caption">Días peleando: 365 días 💛</div>
         </div>
 
-        <!-- Sobre y Carta (Aparece a los 6 segundos) -->
+        <!-- Sobre y Carta -->
         <div class="envelope-wrapper" id="envelope-wrapper">
             <div class="envelope">
                 <div class="flap"></div>
@@ -309,7 +309,6 @@
 
         <!-- Jardín de Tulipanes Amarillos -->
         <div class="tulip-garden">
-            <!-- Tulipanes SVG -->
             <svg class="tulip-svg t1" viewBox="0 0 100 150">
                 <path d="M50 150 Q45 100 50 70" stroke="#2e7d32" stroke-width="6" fill="none"/>
                 <path d="M50 110 Q20 90 35 75 Q45 85 50 110" fill="#388e3c"/>
@@ -353,31 +352,32 @@
             </svg>
         </div>
 
-        <!-- Archivo de Audio local subida a GitHub -->
-        <audio id="musica" src="musica.m4a" preload="auto"></audio>
+        <!-- Archivo de Audio MP3 -->
+        <audio id="musica" src="musica.mp3" preload="auto" loop></audio>
 
     </div>
 
     <script>
         function iniciarSorpresa() {
+            // Oculta pantalla de bienvenida y muestra contenido principal
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'flex';
 
+            // Reproducción de audio al hacer clic en el botón
             let audio = document.getElementById('musica');
-            audio.currentTime = 64; // Inicia en el segundo 64 (coro)
             
-            let playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Error al reproducir audio:", error);
-                });
-            }
+            audio.play().then(() => {
+                console.log("Audio reproduciéndose con éxito.");
+            }).catch(error => {
+                console.log("Error al reproducir audio:", error);
+            });
 
+            // Generar destellos de luz
             for(let i = 0; i < 20; i++) {
                 crearLuz();
             }
 
-            // A los 6 segundos arranca la lluvia de pétalos y se abre la carta
+            // A los 6 segundos se abre la carta y cae la lluvia de pétalos
             setTimeout(() => {
                 iniciarLluviaPetalos();
 
